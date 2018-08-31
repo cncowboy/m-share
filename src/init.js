@@ -26,8 +26,8 @@ export default (config) => {
     if (config.setNormal !== false) {
       setNormalShareInfo(info);
     }
-     // 配置手q分享内容
-     if (util.ua.isFromQQ) {
+    // 配置手q分享内容
+    if (util.ua.isFromQQ) {
       setQQshareInfo(config.types, info);
     }
 
