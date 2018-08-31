@@ -13,6 +13,7 @@ import wxlineShare from './handle-share/wxline.js';
 import qqShare from './handle-share/qq.js';
 import qzoneShare from './handle-share/qzone.js';
 import sinaShare from './handle-share/sina.js';
+import yd from './handle-share/yuedong.js';
 
 const shareFuncMap = {
   wx: wxShare,
@@ -44,6 +45,15 @@ export default {
     const _config = getDefaultConfig(config);
     if (util.ua.isFromWx && _config.wx && _config.wx.appId && _config.wx.timestamp && _config.wx.nonceStr && _config.wx.signature) {
       setWxShareInfo(typesMap, _config);
+    }
+  },
+  showShareBtn(show) {
+    if (util.ua.isFromYuedong) {
+      if (show) {
+        yd.ydShowShareBtn();
+      } else {
+        yd.ydHideShareBtn();
+      }
     }
   },
   init(config) {

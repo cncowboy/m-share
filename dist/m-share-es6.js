@@ -45,7 +45,8 @@ var util = {
     isFromQQ: /mobile.*qq/gi.test(userAgent),
     isFromUC: /ucbrowser/gi.test(userAgent),
     isFromQQBrower: /mqqbrowser[^LightApp]/gi.test(userAgent),
-    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent)
+    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent),
+    isFromYuedong: /yuedong/gi.test(userAgent)
   }
 };
 
@@ -736,6 +737,34 @@ var sinaShare = (info) => {
   // 都不是则弹层二维码提示分享
 };
 
+//显示分享按钮
+function ydShowShareBtn() {
+  if (util.ua.isFromAndroid) {
+    if (!window.YDJSInterface) ; else {
+      if ("showShareBtn" in YDJSInterface) {
+        window.YDJSInterface.showShareBtn();
+      }
+    }
+  } else if (util.ua.isFromIos) {
+    window.location.href = '/local_call?local_action=hide_share_bnt&arg0=1';
+  }
+}
+
+//隐藏分享按钮
+function ydHideShareBtn() {
+  if (util.ua.isFromAndroid) {
+    if (!window.YDJSInterface) ; else {
+      if ("hideShareBtn" in YDJSInterface) {
+        window.YDJSInterface.hideShareBtn();
+      }
+    }
+  } else if (util.ua.isFromIos) {
+    window.location.href = '/local_call?local_action=hide_share_bnt&arg0=0';
+  }
+}
+
+var yd = {ydShowShareBtn, ydHideShareBtn};
+
 /*
  * @Author: backToNature 
  * @Date: 2018-05-22 17:23:35 
@@ -773,6 +802,15 @@ var index = {
     const _config = getDefaultConfig(config);
     if (util.ua.isFromWx && _config.wx && _config.wx.appId && _config.wx.timestamp && _config.wx.nonceStr && _config.wx.signature) {
       setWxShareInfo(typesMap, _config);
+    }
+  },
+  showShareBtn(show) {
+    if (util.ua.isFromYuedong) {
+      if (show) {
+        yd.ydShowShareBtn();
+      } else {
+        yd.ydHideShareBtn();
+      }
     }
   },
   init(config) {

@@ -45,6 +45,7 @@ export default {
     isFromQQ: /mobile.*qq/gi.test(userAgent),
     isFromUC: /ucbrowser/gi.test(userAgent),
     isFromQQBrower: /mqqbrowser[^LightApp]/gi.test(userAgent),
-    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent)
+    isFromQQBrowerLight: /MQQBrowserLightApp/gi.test(userAgent),
+    isFromYuedong: /yuedong/gi.test(userAgent)
   }
 };
