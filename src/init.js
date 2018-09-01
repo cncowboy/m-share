@@ -8,6 +8,7 @@ import util from './util.js';
 import ui from './ui.js';
 import setNormalShareInfo from './set-normal-share-info.js';
 import setQQshareInfo from './set-qq-share-info.js';
+import yd from './handle-share/yuedong'
 
 let isInit = false;
 
@@ -30,6 +31,8 @@ export default (config) => {
     if (util.ua.isFromQQ) {
       setQQshareInfo(config.types, info);
     }
-
+    if (util.ua.isFromYuedong) {
+      window.MetaShareInfo = yd.getMetaShareInfoFunction(info);
+    }
   }
 };

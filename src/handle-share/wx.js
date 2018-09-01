@@ -30,7 +30,7 @@ export default (info) => {
     return;
   }
   if (util.ua.isFromYuedong) {
-    yd.ydDoShare(info);
+    yd.getMetaShareInfoFunction(info)(false);
     return;
   }
 
