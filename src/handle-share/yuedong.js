@@ -291,4 +291,4 @@ function stopBubble(e) {
     else
         window.event.cancelBubble = true; //IE
 }
-export default {ydShowShareBtn, ydHideShareBtn, ydDoShare};
+export default {ydShowShareBtn, ydHideShareBtn, getMetaShareInfoFunction};
