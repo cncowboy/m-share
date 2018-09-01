@@ -8,6 +8,7 @@
 import util from '../util.js';
 import qqBrowserShare from './handle-qqbrowser.js';
 import ui from '../ui.js';
+import yd from './yuedong';
 
 export default (info) => {
   if (util.ua.isFromWx) {
@@ -26,6 +27,11 @@ export default (info) => {
     // qq浏览器
     ui.hideMask();
     qqBrowserShare('qq', info);
+    return;
+  }
+
+  if (util.ua.isFromYuedong) {
+    yd.ydDoShare(info);
     return;
   }
 

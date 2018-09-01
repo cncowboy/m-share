@@ -8,6 +8,7 @@
 import util from '../util.js';
 import qqBrowserShare from './handle-qqbrowser.js';
 import ui from '../ui.js';
+import yd from './yuedong';
 
 export default (info) => {
   if (util.ua.isFromWx) {
@@ -19,6 +20,11 @@ export default (info) => {
   if (util.ua.isFromQQ) {
     // 手机qq
     ui.showRightTopTips();
+    return;
+  }
+
+  if (util.ua.isFromYuedong) {
+    yd.ydDoShare(info);
     return;
   }
 
