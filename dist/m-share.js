@@ -410,6 +410,40 @@
     }
   }
 
+  function setAppShareTitle(title) {
+    if (!window.YDJSInterface) ; else {
+      if ("setPageShareTitle" in YDJSInterface) {
+        window.YDJSInterface.setPageShareTitle(title);
+      }
+    }
+  }
+
+  function setAppShareContent(content) {
+    if (!window.YDJSInterface) ; else {
+      if ("setPageShareContent" in YDJSInterface) {
+        //                alert("info saved at app");
+        window.YDJSInterface.setPageShareContent(content);
+      }
+    }
+  }
+
+  function setAppShareIcon(shareIcon) {
+    if (!window.YDJSInterface) ; else {
+      if ("setPageShareIcon" in YDJSInterface) {
+        //                alert("info saved at app");
+        window.YDJSInterface.setPageShareIcon(shareIcon);
+      }
+    }
+  }
+
+  function setAppShareUrl(url) {
+    if (!window.YDJSInterface) ; else {
+      if ("setPageShareUrl" in YDJSInterface) {
+        window.YDJSInterface.setPageShareUrl(url);
+      }
+    }
+  }
+
   function ydDoShare(shareInfo) {
     var shareTitle = shareInfo.title;
     var shareContent = shareInfo.desc;
@@ -435,9 +469,14 @@
     } else if (util.ua.isFromAndroid) {
       if ("setShareMetaInfo" in YDJSInterface && window.YDJSInterface) {
         window.YDJSInterface.setShareMetaInfo(shareTitle, shareContent, shareIcon, openShareUrl, JSON.stringify({}));
+      } else {
+        setAppShareTitle(shareTitle);
+        setAppShareContent(shareContent);
+        setAppShareIcon(shareIcon);
+        setAppShareUrl(openShareUrl);
       }
+      ydShare();
     }
-    ydShare();
   }
 
   function ydShare(type, event) {
