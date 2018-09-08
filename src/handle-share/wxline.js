@@ -34,7 +34,7 @@ export default (info) => {
   }
 
   if (util.ua.isFromYuedong) {
-    yd.getMetaShareInfoFunction(info)(false);
+    yd.getMetaShareInfoFunction('wxline', info)(false);
     return;
   }
 

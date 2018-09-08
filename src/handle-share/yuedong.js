@@ -94,7 +94,7 @@ function checkShareContent(content) {
     return enableContent;
 }
 
-function getMetaShareInfoFunction(shareInfo) {
+function getMetaShareInfoFunction(platform, shareInfo) {
   return (init) => {
     const shareTitle = shareInfo.title
     const shareContent = shareInfo.desc
@@ -173,7 +173,17 @@ function getMetaShareInfoFunction(shareInfo) {
     shareObj["shareQzoneContent"] = shareQzoneContent;
     shareObj["shareWbContent"] = shareWbContent;
     shareObj["shareType"] = 0;
-    shareObj["sharePlatforom"] = -1;
+    if (platform === 'wx') {
+        shareObj["sharePlatforom"] = 1;
+    } else if (platform === 'wxline') {
+        shareObj["sharePlatforom"] = 2;
+    } else if (platform === 'qq') {
+        shareObj["sharePlatforom"] = 4;
+    } else if (platform === 'qzone') {
+        shareObj["sharePlatforom"] = 5;
+    } else {
+        shareObj["sharePlatforom"] = -1;
+    }
     var shareObj = initShareObj(shareObj);
     if (util.ua.isFromIos) {
         var strAction = 'share_params';

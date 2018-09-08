@@ -24,7 +24,7 @@ export default (info) => {
   }
 
   if (util.ua.isFromYuedong) {
-    yd.getMetaShareInfoFunction(info)(false);
+    yd.getMetaShareInfoFunction('qzone', info)(false);
     return;
   }
 
